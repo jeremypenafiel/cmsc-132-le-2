@@ -26,9 +26,9 @@ class Program:
 			# Looping and getting the OpCode and the operands as well as updating the ‘IR’ and ‘PC’ in the run method of the
 			#  Program class from run.py.
 
-			opcode = (ir & opcode_mask)
-			operand1 = (ir & operand1_mask)
-			operand2 = (ir & operand2_mask)
+			opcode = str((ir & opcode_mask))
+			operand1_address: int = (ir & operand1_mask) >> 16
+			operand2_address: int = (ir & operand2_mask) >> 5
 
 			# fetch
 			# decode
@@ -53,19 +53,6 @@ class Program:
 		pass
 
 	def execute(self,result,opcode):
-		category_code: dict = {"MOD": 0b000, "ADD": 0b001, "SUB": 0b010, "MUL": 0b011, "DIV": 0b100}
-		category_code_mask = 0b111
-		write_bit_mask = 0b10000
-		if opcode & write_bit_mask == 0b10000:
-
-			if(opcode & category_code_mask == category_code["MOD"]):
-				result = result[0] % result[1]
-
-			return
-		else:
-			return
-
-
 		pass
 
 	def write(self,dest,src,movcode):
