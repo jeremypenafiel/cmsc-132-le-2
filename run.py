@@ -4,7 +4,7 @@ from addressing import Access, AddressingMode
 import storage
 from bin_convert import HalfPrecision, Length
 
-ir: int
+
 class Program:
 	def __init__(self, program):
 		pass
@@ -12,20 +12,23 @@ class Program:
 	def run(self) -> None:
 		monadic = []
 		niladic = []
+
+		ir = storage.register.load("IR")
+		pc = storage.register.load("PC")
+
 		while True:
-			pc: int = 0
-			global ir
 
 			opcode_mask = 0b11111 << 27  # 11111 0 000 0000000 0 000 0000000 00000
 			operand1_mask = 0b1111111 << 16	 # 00000 0 000 1111111 0 000 0000000 00000
 			operand2_mask = 0b1111111 << 5		# 00000 0 000 0000000 0 000 1111111 00000
 			comcode_mask = 0b00111 << 27  # 00111 0 000 0000000 0 000 0000000 00000
 
+			# Looping and getting the OpCode and the operands as well as updating the ‘IR’ and ‘PC’ in the run method of the
+			#  Program class from run.py.
+
 			opcode = (ir & opcode_mask)
 			operand1 = (ir & operand1_mask)
 			operand2 = (ir & operand2_mask)
-
-
 
 			# fetch
 			# decode

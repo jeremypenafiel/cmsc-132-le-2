@@ -13,6 +13,7 @@ class Access:
 			addr = var.load(addr)
 		return addr
 	def store(typ,addr,value):
+		pass
 
 class AddressingMode:
 	@staticmethod
