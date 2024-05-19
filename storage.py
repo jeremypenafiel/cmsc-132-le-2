@@ -1,17 +1,20 @@
 from bin_convert import HalfPrecision, Length
 import copy
 
+
 class Storage:
 	def __init__(self, data={}):
 		self.data = copy.deepcopy(data)
+
 	def load(self, address):
-		if type(address)==type(str()) and len(address)==Length.precision:
+		if type(address) == type(str()) and len(address) == Length.precision:
 			address = HalfPrecision.hpbin2dec(address)
 		value = self.data[address]
-		if len(value)!=Length.precision:
+		if len(value) != Length.precision:
 			return value
 		value = HalfPrecision.hpbin2dec(value)
 		return value
+
 	def store(self,address,value):
 		if type(address)==type(str()) and len(address)==Length.precision:
 			address = HalfPrecision.hpbin2dec(address)
@@ -19,15 +22,18 @@ class Storage:
 			self.data[address] = value
 		else:
 			self.data[address] = HalfPrecision.hpdec2bin(value)
+
 	def setStorage(self,stolen):
 		for i in range(stolen):
 			try:
 				self.load(i)
 			except:
 				self.store(i,0)
+
 	def dispStorage(self):
 		for k,v in self.data.items():
 			print(f"{k}: {v}")
+
 	@staticmethod
 	def setVariable(var,name,addr,value):
 		variable.store(name,addr)
