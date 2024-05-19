@@ -34,11 +34,10 @@ class Program:
 			# decode
 
 			# execute
-			self.execute(result,opcode)
 			# write
 			# no execute, no store
-			if str(opcode[0:2]) == "00":
-				comcode: int = opcode & comcode_mask
+			if opcode[0:2] == "00":
+				comcode = int(opcode[2:5], 2)
 				if comcode == 0:  # PRNT
 					br = Access.data("BR", ["var", "reg"])
 					print_msg = storage.variable.data["MSG"][ir-br]
