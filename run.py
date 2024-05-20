@@ -17,7 +17,8 @@ class Program:
 		pc = storage.register.load("PC")
 
 		while True:
-
+                        if len(str(ir)) != 32 or ir == 0:
+				break
 			opcode_mask = 0b11111 << 27  # 11111 0 000 0000000 0 000 0000000 00000
 			operand1_mask = 0b1111111 << 16	 # 00000 0 000 1111111 0 000 0000000 00000
 			operand2_mask = 0b1111111 << 5		# 00000 0 000 0000000 0 000 1111111 00000
